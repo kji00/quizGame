@@ -1,6 +1,6 @@
 var qAnda = [
     {
-        question: "What yeard was javascript created?",
+        question: "What year was javascript created?",
         choices: ["2000", "2001", "1997", "1995"],
         answer: 4
     },
@@ -54,10 +54,34 @@ var qAnda = [
     },
 
     {
-        question: "What does a 'for' do?",
+        question: "What does a 'for' loop do?",
         choices: ["repeats forever", "used only in functions", "repeats until a specific condition evaluates to false", "only exist in Python"],
         answer: 3
     }
 
 ]
 
+console.log(qAnda.length)
+
+//get questions from the the qAnda array
+
+function getQuestions(question){
+    for (var i = 0; i < question.length; i++){
+        var objCount = question[i];
+        var questionEl = document.getElementById("questions");
+        questionEl.textContent = question[i].question;
+        for (let x in question[i].choices){
+            
+        }
+    };
+
+}
+
+function getAnswers(answers){
+    for(var x in answers.choices){
+       console.log(answers.choices[x]) 
+    };
+
+}
+
+getQuestions(qAnda);
