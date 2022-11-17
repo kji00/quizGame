@@ -61,27 +61,33 @@ var qAnda = [
 
 ]
 
-console.log(qAnda.length)
+var questionEl = document.querySelector("#questions");
+var listEl = document.querySelectorAll("ol button"); 
+var startEl = document.querySelector("#start-game");
 
 //get questions from the the qAnda array
-
 function getQuestions(question){
     for (var i = 0; i < question.length; i++){
         var objCount = question[i];
-        var questionEl = document.getElementById("questions");
         questionEl.textContent = question[i].question;
-        for (let x in question[i].choices){
-            
+        for (let x = 0; x < listEl.length; x++){
+            listEl[x].innerHTML = objCount.choices[x]
+            };
+
+        };
+    };
+
+
+//start game button unhides questions and answers portion and hides the start the quiz game button
+startEl.addEventListener("click", function(event){
+    var element = event.target;
+    
+    if (element.matches("#start-game")){
+        var gameState = element.getAttribute("data-state");
+        var qState = element.getAttribute("data-state");
+        if (gameState === "show"){
+            element.setAttribute("data-state", "hidden")
+            document.getElementById("game").style.display = "none";
         }
-    };
-
-}
-
-function getAnswers(answers){
-    for(var x in answers.choices){
-       console.log(answers.choices[x]) 
-    };
-
-}
-
-getQuestions(qAnda);
+    }
+})

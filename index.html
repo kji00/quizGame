@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to the Javascript Quiz Game!</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
     <nav>
@@ -13,17 +14,19 @@
     </nav>
 
     <section>
-        <div>
-            <button type="button" data-state="show">Start the Quiz Game</button>
+        <div id="game">
+            <button type="button" id="start-game" data-state="show">Start the Quiz Game</button>
         </div>
-        <div id="questions" data-state="hidden">questions</div>
-        <div>
-            <ol>
-                <li>answer1</li>
-                <li>answer2</li>
-                <li>answer3</li>
-                <li>answer4</li>
-            </ol>
+        <div id="main-game" data-state="hidden">
+            <div id="questions">questions</div>
+            <div id="answers">
+                <ol>
+                    <button class=".box">answer1</button>
+                    <button class=".box">answer2</button>
+                    <button class=".box">answer3</button>
+                    <button class=".box">answer4</button>
+                </ol>
+            </div>
         </div>
     </section>
 
