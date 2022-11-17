@@ -66,6 +66,9 @@ var answerEl = document.querySelector("#answers");
 var listEl = document.querySelectorAll("ol button");
 var startEl = document.querySelector("#start-game");
 var mainGameEl = document.querySelector("#main-game");
+
+var correct = "";
+
 var count = 0;
 
 //get questions from the the qAnda array
@@ -73,41 +76,35 @@ function getQuestions(quiz) {
     console.log(quiz);
     questionEl.textContent = quiz.question;
     console.log(quiz.answer);
-
+  
     for (let x = 0; x < listEl.length; x++) {
-        listEl[x].innerHTML = quiz.choices[x]
-    };
+      listEl[x].innerHTML = quiz.choices[x];
+    }
+  }
+  
+  function getAnswers(event) {
+    var element = event.target;
+    var correctAnswer = qAnda[count].answer;
+    console.log(correctAnswer);
+    var chosenAnswer = element.innerHTML;
+  
+    if (chosenAnswer === correctAnswer) {
+      console.log("correct");
+      correctAnswer = "";
+    } else {
+      console.log("wrong");
+      correctAnswer = "";
+    }
+  
+    count++;
+    if (count >= qAnda.length){
+        return;
+    } else {
+        getQuestions(qAnda[count]);
+    }
+  }
 
-    getAnswers(quiz);
-}
-
-function getAnswers(quiz) {
-    answerEl.addEventListener("click", function (event) {
-        var element = event.target;
-        var correctAnswer = quiz.answer;
-        console.log(correctAnswer);
-
-        if (element.matches(".box")) {
-            var chosenAnswer = element.textContent;
-            console.log(chosenAnswer);
-            console.log(chosenAnswer == correctAnswer);
-            count++;
-            if (chosenAnswer == correctAnswer) {
-                count++;
-                console.log('correct');
-                correctAnswer = "";
-                getQuestions(qAnda[count]);
-            } else if (chosenAnswer != correctAnswer) {
-                count++;
-                console.log("wrong");
-                correctAnswer = "";
-                getQuestions(qAnda[count]);
-            }
-        }
-
-
-    })
-}
+answerEl.onclick = getAnswers;
 
 //start game button unhides questions and answers portion and hides the start the quiz game button
 startEl.addEventListener("click", function (event) {
