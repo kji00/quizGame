@@ -9,15 +9,15 @@
 </head>
 <body>
     <nav>
-        <div id="highscore">View High Score</div>
+        <div id="highscore">High Score</div>
         <div id="timer">Timer:</div>
     </nav>
 
-    <section>
+    <section id="main">
         <div id="game">
             <button type="button" id="start-game" data-state="show">Start the Quiz Game</button>
         </div>
-        <div id="main-game" display: none>
+        <div id="main-game">
             <div id="questions">questions</div>
             <div>
                 <ol id="answers">
@@ -28,6 +28,15 @@
                 </ol>
             </div>
         </div>
+    </section>
+
+    <section id="endgame">
+        <form>
+            <label for="initials">Enter your initials:</label>
+            <input type="text" id="initials">
+            <input type="submit" value="submit">
+        </form>
+
     </section>
 
     <script src="./assets/js/script.js"></script>

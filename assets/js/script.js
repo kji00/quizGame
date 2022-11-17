@@ -68,7 +68,8 @@ var startEl = document.querySelector("#start-game");
 var mainGameEl = document.querySelector("#main-game");
 var timerEl = document.querySelector("#timer");
 var viewScoreEl = document.querySelector("#highscore");
-var timeLeft = 60;
+var endGameEl = document.querySelector("#endgame");
+var timeLeft = 45;
 var rightAnswers = 0;
 var count = 0;
 
@@ -96,7 +97,7 @@ function getAnswers(event) {
 
     count++;
     if (count >= qAnda.length) {
-        //call endGame function;
+        endGame();
     } else {
         getQuestions(qAnda[count]);
     }
@@ -112,9 +113,18 @@ function timer() {
 
         if (timeLeft === 0) {
             clearInterval(timerInterval);
-            //call endGame function
+            endGame();
         }
     }, 1000);
+}
+
+//clears page and asks for initials to save score into local storage
+function endGame(){
+    mainGameEl.style.display = "none";
+    endGameEl.style.display = "block";
+    if (timeLeft > 0){
+        timeLeft = 1;
+    }
 }
 
 //start game button unhides questions and answers portion and hides the start the quiz game button
