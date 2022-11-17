@@ -66,45 +66,56 @@ var answerEl = document.querySelector("#answers");
 var listEl = document.querySelectorAll("ol button");
 var startEl = document.querySelector("#start-game");
 var mainGameEl = document.querySelector("#main-game");
-
-var correct = "";
-
+var timerEl = document.querySelector("#timer");
+var viewScoreEl = document.querySelector("#highscore");
+var timeLeft = 60;
+var rightAnswers = 0;
 var count = 0;
 
-//get questions from the the qAnda array
+//get questions and posts the choices from the the qAnda array
 function getQuestions(quiz) {
-    console.log(quiz);
     questionEl.textContent = quiz.question;
-    console.log(quiz.answer);
-  
+
     for (let x = 0; x < listEl.length; x++) {
-      listEl[x].innerHTML = quiz.choices[x];
+        listEl[x].innerHTML = quiz.choices[x];
     }
-  }
-  
-  function getAnswers(event) {
+}
+//gets user input and determines if the answer is correct or not
+function getAnswers(event) {
     var element = event.target;
     var correctAnswer = qAnda[count].answer;
-    console.log(correctAnswer);
     var chosenAnswer = element.innerHTML;
-  
+
     if (chosenAnswer === correctAnswer) {
-      console.log("correct");
-      correctAnswer = "";
+        rightAnswers++;
+        correctAnswer = "";
     } else {
-      console.log("wrong");
-      correctAnswer = "";
+        timeLeft -= 4;
+        correctAnswer = "";
     }
-  
+
     count++;
-    if (count >= qAnda.length){
-        return;
+    if (count >= qAnda.length) {
+        //call endGame function;
     } else {
         getQuestions(qAnda[count]);
     }
-  }
+}
 
 answerEl.onclick = getAnswers;
+
+//timer function
+function timer() {
+    var timerInterval = setInterval(function () {
+        timeLeft--;
+        timerEl.innerHTML = timeLeft;
+
+        if (timeLeft === 0) {
+            clearInterval(timerInterval);
+            //call endGame function
+        }
+    }, 1000);
+}
 
 //start game button unhides questions and answers portion and hides the start the quiz game button
 startEl.addEventListener("click", function (event) {
@@ -116,6 +127,7 @@ startEl.addEventListener("click", function (event) {
             element.setAttribute("data-state", "hidden")
             document.getElementById("game").style.display = "none";
             mainGameEl.style.display = "block";
+            timer();
         }
     }
     getQuestions(qAnda[count]);
