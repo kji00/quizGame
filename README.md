@@ -8,7 +8,7 @@ Javascript quiz game has 10 questions, you will get a +1 for each correct answer
 ![End](./images/end.png)
 
 
-
+![liveLink](https://kji00.github.io/quizGame/)
 
 
 I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
