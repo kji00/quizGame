@@ -1,4 +1,13 @@
 # quizGame
+Javascript quiz game has 10 questions, you will get a +1 for each correct answer and your time will decrease by 5 seconds if you get one wrong. The timer starts at 45 seconds and the game ends when the timer hits 0 or you finish the quiz (whichever comes first). At the end of the game you can enter you initials and the quiz will write back your initial and your score.
+
+![Beginning](./images/start.png)
+
+![Content](./images/quizContent.png)
+
+![End](./images/end.png)
+
+
 
 
 

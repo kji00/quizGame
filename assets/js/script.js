@@ -5,59 +5,59 @@ var qAnda = [
         answer: "1995"
     },
 
-    // {
-    //     question: "What will the following code return in value: 3 < 7",
-    //     choices: ["true", "false", "NaN", "alert"],
-    //     answer: "true"
-    // },
+    {
+        question: "What will the following code return in value: 3 < 7",
+        choices: ["true", "false", "NaN", "alert"],
+        answer: "true"
+    },
 
-    // {
-    //     question: "What file extension does Javascript have",
-    //     choices: [".java", ".js", ".javascript", ".html"],
-    //     answer: ".js"
-    // },
+    {
+        question: "What file extension does Javascript have",
+        choices: [".java", ".js", ".javascript", ".html"],
+        answer: ".js"
+    },
 
-    // {
-    //     question: "What HTML element do we use to link a .js file",
-    //     choices: ["class", "link", "script", "@import"],
-    //     answer: "script"
-    // },
+    {
+        question: "What HTML element do we use to link a .js file",
+        choices: ["class", "link", "script", "@import"],
+        answer: "script"
+    },
 
-    // {
-    //     question: "How do you create a function in JavaScript",
-    //     choices: ["function = myFunction()", "function myFunction()", "function", "var function"],
-    //     answer: "function myFunction()"
-    // },
+    {
+        question: "How do you create a function in JavaScript",
+        choices: ["function = myFunction()", "function myFunction()", "function", "var function"],
+        answer: "function myFunction()"
+    },
 
-    // {
-    //     question: "What event occurs when the user clicks on an HTML element?",
-    //     choices: ["mouseover", "alert", "action", "onclick"],
-    //     answer: "onclick"
-    // },
+    {
+        question: "What event occurs when the user clicks on an HTML element?",
+        choices: ["mouseover", "alert", "action", "onclick"],
+        answer: "onclick"
+    },
 
-    // {
-    //     question: "How do you declare a variable in JavaScript?",
-    //     choices: ["jsVar = ", "v jsVar: ", "--jsVar: (var)", "var jsVar = "],
-    //     answer: "var jsVar = "
-    // },
+    {
+        question: "How do you declare a variable in JavaScript?",
+        choices: ["jsVar = ", "v jsVar: ", "--jsVar: (var)", "var jsVar = "],
+        answer: "var jsVar = "
+    },
 
-    // {
-    //     question: "Which of the following type of variable is visible everywhere in your JavaScript code?",
-    //     choices: ["global variable", "local variable", "Both of the above", "None of the above"],
-    //     answer: "global variable"
-    // },
+    {
+        question: "Which of the following type of variable is visible everywhere in your JavaScript code?",
+        choices: ["global variable", "local variable", "Both of the above", "None of the above"],
+        answer: "global variable"
+    },
 
-    // {
-    //     question: "What are variables used for in JavaScript Programs?",
-    //     choices: ["Storing numbers, dates, or other values", "Used in calling a function", "Varying randomly", "None of the above"],
-    //     answer: "Storing numbers, dates, or other values"
-    // },
+    {
+        question: "What are variables used for in JavaScript Programs?",
+        choices: ["Storing numbers, dates, or other values", "Used in calling a function", "Varying randomly", "None of the above"],
+        answer: "Storing numbers, dates, or other values"
+    },
 
-    // {
-    //     question: "What does a 'for' loop do?",
-    //     choices: ["repeats forever", "used only in functions", "repeats until a specific condition evaluates to false", "only exist in Python"],
-    //     answer: "repeats until a specific condition evaluates to false"
-    // }
+    {
+        question: "What does a 'for' loop do?",
+        choices: ["repeats forever", "used only in functions", "repeats until a specific condition evaluates to false", "only exist in Python"],
+        answer: "repeats until a specific condition evaluates to false"
+    }
 
 ]
 
@@ -67,7 +67,7 @@ var listEl = document.querySelectorAll("ol button");
 var startEl = document.querySelector("#start-game");
 var mainGameEl = document.querySelector("#main-game");
 var timerEl = document.querySelector("#timer");
-var viewScoreEl = document.querySelector("#highscore");
+var lastScoreEl = document.querySelector("#lastScore");
 var endGameEl = document.querySelector("#endgame");
 var formEl = document.querySelector("#formInput");
 var initialsEl = document.querySelector("#initials");
@@ -131,7 +131,7 @@ function endGame(){
 
 
 //gets input value from the user and stores it to localstorage along with the score
-formEl.onsubmit = function(e){
+formEl.onsubmit = function (e) {
     e.preventDefault();
     var getInitials = formEl.initials.value;
     var scores = {
@@ -140,7 +140,20 @@ formEl.onsubmit = function(e){
     };
 
     localStorage.setItem("userScore", JSON.stringify(scores));
+    showScore();
 }
+
+function showScore() {
+    var userStats = JSON.parse(localStorage.getItem("userScore"));
+    var showScoreEl = document.getElementById("showScore");
+    var placeScoreEl = document.getElementById("placeScore");
+    console.log(userStats);
+    console.log(userStats.initials);
+
+    showScoreEl.style.display = "block";
+    placeScoreEl.innerHTML = userStats.initials + " got a score of " + userStats.score
+    lastScoreEl.innerHTML = "Last Score: " + userStats.score
+};
 
 //start game button unhides questions and answers portion and hides the start the quiz game button
 startEl.addEventListener("click", function (event) {
